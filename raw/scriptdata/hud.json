@@ -1,0 +1,28 @@
+{
+    "setText": "WELCOME TO THE SERVER",
+    "x": 100,
+    "y": 100,
+
+    "setPoint": [
+        "CENTER",
+        "CENTER",
+        0,
+        0
+    ],
+
+    "alignX": "CENTER",
+    "alignY": "CENTER",
+
+    "font": "objective",
+    "fontScale": 0,
+
+    "color": [
+        0.2,
+        0.6,
+        1
+    ],
+
+    "alpha": 1,
+    "sort": 10,
+    "foreground": 1
+}
