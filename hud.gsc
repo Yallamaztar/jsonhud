@@ -694,14 +694,11 @@ hud_setPulseFX(hud, speed, decaystart, decayduration) {
 // _build_array(a, b, c, d) Helper function that builds an array from three or four values
 _build_array(a, b , c, d) {
     arr = json_array();
-    if (!isdefined(d)) {
-        arr = array_add(arr, a);
-        arr = array_add(arr, b);
-        arr = array_add(arr, c);
-    } else {
-        arr = array_add(arr, a);
-        arr = array_add(arr, b);
-        arr = array_add(arr, c);
+    arr = array_add(arr, a);
+    arr = array_add(arr, b);
+    arr = array_add(arr, c);
+
+    if (isdefined(d)) {
         arr = array_add(arr, d);
     }
     return arr;
