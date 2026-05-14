@@ -3,7 +3,30 @@
  * Very work in progress still, all properties dont even work still
  *
  * Contributions are welcome
+ * ================================================================
+ * Dependencies:
+ *   Requires the strings utility library:
+ *   https://github.com/Yallamaztar/strings
  *
+ *   This library relies on the following functions:
+ *     - printlnf()
+ *     - len()
+ *   ------------------------------------------------
+ *   Requires the JSON library:
+ *   https://github.com/Yallamaztar/JSON
+ *
+ *   This library relies on the following functions:
+ *     - read()
+ *     - json_object()
+ *     - object_keys()
+ *     - object_get()
+ *     - object_add()
+ *     - json_array()
+ *     - array_add()
+ *
+ *   Make sure to have these scripts in your
+ *   scripts\ dir before using this HUD script
+ * ================================================================
  * Currently supported HUD elements:
  *    - ClientHudElement
  *    - ServerFontString
