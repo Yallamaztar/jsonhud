@@ -63,7 +63,36 @@
 #include scripts\json;
 
 /*
- * load_hud_element(file, entity) Loads a HUD element from a JSON file
+ * hud_load(file, entity) Loads a HUD element from a JSON file
+ *
+ * Params:
+ *    file   - The path to the JSON file
+ *    entity - The entity for which to create the HUD element (optional)
+ *
+ * Returns:
+ *    The loaded HUD element 
+ *
+ * Example Usage:
+ * ```
+ * onPlayerConnect() {
+ *   for(;;) {
+ *     level waittill("connected", player);
+ *     player.welcome_text = hud_load("hud.json");
+ *     player.menu = hud_load("menu.json", player);
+ *   }
+ * }
+ * ```
+ */
+hud_load(file, entity) {
+    if (isdefined(entity)) {
+        return _load_hud_element(file, entity);
+    } else {    
+        return _load_server_string(file);
+    }
+}
+
+/*
+ * _load_hud_element(file, entity) Loads a HUD element from a JSON file
  *
  * Params:
  *    file   - The path to the JSON file
@@ -74,12 +103,12 @@
  * onPlayerConnect() {
  *   for(;;) {
  *     level waittill("connected", player);
- *     player.welcome_text = load("hud.json");
+ *     player.welcome_text = _load_hud_element("hud.json", player);
  *   }
  * }
  * ```
  */
-load_hud_element(file, entity) {
+_load_hud_element(file, entity) {
     json = read(file);
 
     if (!isdefined(json)) {
@@ -99,30 +128,39 @@ load_hud_element(file, entity) {
 }
 
 /*
- * load_server_string(file) Loads a server string from a JSON file
+ * _load_server_string(file) Loads a server string from a JSON file
  *
  * Params:
  *    file - The path to the JSON file
  *
  * Returns:
  *    The loaded server string
+ *
+ * Example Usage:
+ * ```
+ * onPlayerConnect() {
+ *   for(;;) {
+ *     level waittill("connected", player);
+ *     player.welcome_text = _load_server_string("hud.json");
+ *   }
+ * }
+ * ```
  */
-load_server_string(file) {
-    json = read(file);
-
-    if (!isdefined(json)) {
+_load_server_string(file) {
+    data = read(file);
+    if (!isdefined(data)) {
         printlnf("^1Error:^7 Failed to read JSON file: %s", file);
         return undefined;
     }
-    
+
     // Create the server font string
-    str = hud_server_font_string(json["font"], json["fontScale"]);
+    str = hud_server_font_string(object_get(data, "font"), object_get(data, "fontScale"));
 
     // Apply each property from the json to the server font string
-    keys = object_keys(json);
+    keys = object_keys(data);
     for (i = 0; i < len(keys); i++) {
         printlnf("Applying property: %s", keys[i]);
-        str = _apply_property(str, keys[i], object_get(json, keys[i]));
+        str = _apply_property(str, keys[i], object_get(data, keys[i]));
     }
 }
 
@@ -201,11 +239,11 @@ hud_client_hud_element(entity) {
     return ce;
 }
 
-hud_server_font_string(font, size) {
+hud_server_font_string(font, scale) {
     ce = SpawnStruct();
     
     // ce.element holds the server font string
-    ce.element = CreateServerFontString(font, size);
+    ce.element = CreateServerFontString(font, float(scale));
 
     // ce.properties holds the json data
     ce.properties = json_object();
