@@ -1,5 +1,3 @@
-#include scripts\hud;
-
 init() {
     level thread onPlayerConnect();
 }
@@ -10,6 +8,6 @@ onPlayerConnect() {
         level waittill("connected", player);
 
         // load ServerFontString element from json
-        player.ss = load_server_string("hud.json");
+        player.ss = scripts\hud::hud_load("hud.json");
     }
 }
