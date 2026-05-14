@@ -3,6 +3,36 @@
  * Very work in progress still, all properties dont even work still
  *
  * Contributions are welcome
+ *
+ * Currently supported HUD elements:
+ *    - ClientHudElement
+ *    - ServerFontString
+ *
+ * Currently supported properties:
+ *    - hud_x(hud, x)
+ *    - hud_y(hud, y)
+ *    - hud_setText(hud, text)
+ *    - hud_setPoint(hud, x, y, width, height)
+ *    - hud_setShader(hud, shader, r, g, b)
+ *    - hud_alignX(hud, alignX)
+ *    - hud_alignY(hud, alignY)
+ *    - hud_horzalign(hud, horzalign)
+ *    - hud_vertalign(hud, value)
+ *    - hud_font(hud, font)
+ *    - hud_fontScale(hud, fontScale)
+ *    - hud_color(hud, color)
+ *    - hud_alpha(hud, alpha)
+ *    - hud_glowColor(hud, glowColor)
+ *    - hud_glowAlpha(hud, glowAlpha)
+ *    - hud_sort(hud, sort)
+ *    - hud_foreground(hud, foreground)
+ *    - hud_hidewhendead(hud, state)
+ *    - hud_hidewhenindemo(hud, state)
+ *    - hud_hidewheninkillcam(hud, state)
+ *    - hud_hidewheninmenu(hud, state)
+ *    - hud_moveOvertime(hud, overtime)
+ *    - hud_fadeOverTime(hud, overtime)
+ *    - hud_setPulseFX(hud, speed, decaystart, decayduration)
  */
 
 #include maps\mp\gametypes\_hud_util;
