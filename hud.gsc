@@ -183,7 +183,7 @@ _apply_property(hud, key, value) {
  *    entity - The entity for which to create the HUD element
  *
  * Returns:
- *    A struct containing the HUD element and its metadata
+ *    A struct containing the HUD element and its properties
  *
  * Example Usage:
  * ```
@@ -196,8 +196,8 @@ hud_client_hud_element(entity) {
     // ce.element holds the client hud element
     ce.element = NewClientHudElem(entity);
 
-    // ce.metadata holds the json data
-    ce.metadata = json_object();
+    // ce.properties holds the json data
+    ce.properties = json_object();
     return ce;
 }
 
@@ -207,8 +207,8 @@ hud_server_font_string(font, size) {
     // ce.element holds the server font string
     ce.element = CreateServerFontString(font, size);
 
-    // ce.metadata holds the json data
-    ce.metadata = json_object();
+    // ce.properties holds the json data
+    ce.properties = json_object();
     return ce;
 }
 
@@ -230,7 +230,7 @@ hud_server_font_string(font, size) {
  */
 hud_x(hud, value) {
     hud.element.x = value;
-    hud.metadata = object_add(hud.metadata, "x", value);
+    hud.properties = object_add(hud.properties, "x", value);
     return hud;
 }
 
@@ -252,7 +252,7 @@ hud_x(hud, value) {
  */
 hud_y(hud, value) {
     hud.element.y = value;
-    hud.metadata = object_add(hud.metadata, "y", value);
+    hud.properties = object_add(hud.properties, "y", value);
     return hud;
 }
 
@@ -274,7 +274,7 @@ hud_y(hud, value) {
  */
 hud_setText(hud, text) {
     hud.element SetText(text);
-    hud.metadata = object_add(hud.metadata, "setText", text);
+    hud.properties = object_add(hud.properties, "setText", text);
     return hud;
 }
 
@@ -296,7 +296,7 @@ hud_setText(hud, text) {
  */
 hud_setPoint(hud, xPoint, yPoint, x, y) {
     hud.element SetPoint(xPoint, yPoint, x, y);
-    hud.metadata = object_add(hud.metadata, "setPoint", _build_array(xPoint, yPoint, x, y));
+    hud.properties = object_add(hud.properties, "setPoint", _build_array(xPoint, yPoint, x, y));
     return hud;
 }
 
@@ -320,7 +320,7 @@ hud_setPoint(hud, xPoint, yPoint, x, y) {
  */
 hud_setShader(hud, shader, x, y) {
     hud.element SetShader(shader, x, y);
-    hud.metadata = object_add(hud.metadata, "setShader", shader);
+    hud.properties = object_add(hud.properties, "setShader", shader);
     return hud;
 }
 
@@ -342,7 +342,7 @@ hud_setShader(hud, shader, x, y) {
  */
 hud_alignX(hud, alignX) {
     hud.element.alignX = alignX;
-    hud.metadata = object_add(hud.metadata, "alignX", alignX);
+    hud.properties = object_add(hud.properties, "alignX", alignX);
     return hud;
 }
 
@@ -364,7 +364,7 @@ hud_alignX(hud, alignX) {
  */
 hud_alignY(hud, alignY) {
     hud.element.alignY = alignY;
-    hud.metadata = object_add(hud.metadata, "alignY", alignY);
+    hud.properties = object_add(hud.properties, "alignY", alignY);
     return hud;
 }
 
@@ -386,7 +386,7 @@ hud_alignY(hud, alignY) {
  */
 hud_horzalign(hud, value) {
     hud.element.horzalign = value;
-    hud.metadata = object_add(hud.metadata, "horzalign", value);
+    hud.properties = object_add(hud.properties, "horzalign", value);
     return hud;
 }
 
@@ -408,7 +408,7 @@ hud_horzalign(hud, value) {
  */
 hud_vertalign(hud, value) {
     hud.element.vertalign = value;
-    hud.metadata = object_add(hud.metadata, "vertalign", value);
+    hud.properties = object_add(hud.properties, "vertalign", value);
     return hud;
 }
 
@@ -430,7 +430,7 @@ hud_vertalign(hud, value) {
  */
 hud_font(hud, font) {
     hud.element.font = font;
-    hud.metadata = object_add(hud.metadata, "font", font);
+    hud.properties = object_add(hud.properties, "font", font);
     return hud;
 }
 
@@ -452,7 +452,7 @@ hud_font(hud, font) {
  */
 hud_fontScale(hud, fontScale) {
     hud.element.fontScale = fontScale;
-    hud.metadata = object_add(hud.metadata, "fontScale", fontScale);
+    hud.properties = object_add(hud.properties, "fontScale", fontScale);
     return hud;
 }
 
@@ -474,7 +474,7 @@ hud_fontScale(hud, fontScale) {
  */
 hud_color(hud, color) {
     hud.element.color = color;
-    hud.metadata = object_add(hud.metadata, "color", _build_array(color[0], color[1], color[2]));
+    hud.properties = object_add(hud.properties, "color", _build_array(color[0], color[1], color[2]));
     return hud;
 }
 
@@ -496,7 +496,7 @@ hud_color(hud, color) {
  */
 hud_alpha(hud, alpha) {
     hud.element.alpha = alpha;
-    hud.metadata = object_add(hud.metadata, "alpha", alpha);
+    hud.properties = object_add(hud.properties, "alpha", alpha);
     return hud;
 }
 
@@ -518,7 +518,7 @@ hud_alpha(hud, alpha) {
  */
 hud_glowColor(hud, color) {
     hud.element.glowColor = color;
-    hud.metadata = object_add(hud.metadata, "glowColor", _build_array(color[0], color[1], color[2]));
+    hud.properties = object_add(hud.properties, "glowColor", _build_array(color[0], color[1], color[2]));
     return hud;
 }
 
@@ -540,7 +540,7 @@ hud_glowColor(hud, color) {
  */
 hud_glowAlpha(hud, alpha) {
     hud.element.glowAlpha = alpha;
-    hud.metadata = object_add(hud.metadata, "glowAlpha", alpha);
+    hud.properties = object_add(hud.properties, "glowAlpha", alpha);
     return hud;
 }
 
@@ -562,7 +562,7 @@ hud_glowAlpha(hud, alpha) {
  */
 hud_sort(hud, sort) {
     hud.element.sort = sort;
-    hud.metadata = object_add(hud.metadata, "sort", sort);
+    hud.properties = object_add(hud.properties, "sort", sort);
     return hud;
 }
 
@@ -584,7 +584,7 @@ hud_sort(hud, sort) {
  */
 hud_foreground(hud, state) {
     hud.element.foreground = state;
-    hud.metadata = object_add(hud.metadata, "foreground", state);
+    hud.properties = object_add(hud.properties, "foreground", state);
     return hud;
 }
 
@@ -606,7 +606,7 @@ hud_foreground(hud, state) {
  */
 hud_hidewhendead(hud, state) {
     hud.element.hidewhendead = state;
-    hud.metadata = object_add(hud.metadata, "hidewhendead", state);
+    hud.properties = object_add(hud.properties, "hidewhendead", state);
     return hud;
 }
 
@@ -628,7 +628,7 @@ hud_hidewhendead(hud, state) {
  */
 hud_hidewhenindemo(hud, state) {
     hud.element.hidewhenindemo = state;
-    hud.metadata = object_add(hud.metadata, "hidewhenindemo", state);
+    hud.properties = object_add(hud.properties, "hidewhenindemo", state);
     return hud;
 }
 
@@ -650,7 +650,7 @@ hud_hidewhenindemo(hud, state) {
  */
 hud_hidewheninkillcam(hud, state) {
     hud.element.hidewheninkillcam = state;
-    hud.metadata = object_add(hud.metadata, "hidewheninkillcam", state);
+    hud.properties = object_add(hud.properties, "hidewheninkillcam", state);
     return hud;
 }
 
@@ -672,7 +672,7 @@ hud_hidewheninkillcam(hud, state) {
  */
 hud_hidewheninmenu(hud, state) {
     hud.element.hidewheninmenu = state;
-    hud.metadata = object_add(hud.metadata, "hidewheninmenu", state);
+    hud.properties = object_add(hud.properties, "hidewheninmenu", state);
     return hud;
 }
 
@@ -694,7 +694,7 @@ hud_hidewheninmenu(hud, state) {
  */
 hud_moveOvertime(hud, overtime) {
     hud.element MoveOverTime(overtime);
-    hud.metadata = object_add(hud.metadata, "moveOverTime", overtime);
+    hud.properties = object_add(hud.properties, "moveOverTime", overtime);
     return hud;
 }
 
@@ -716,7 +716,7 @@ hud_moveOvertime(hud, overtime) {
  */
 hud_fadeOverTime(hud, overtime) {
     hud.element FadeOverTime(overtime);
-    hud.metadata = object_add(hud.metadata, "fadeOverTime", overtime);
+    hud.properties = object_add(hud.properties, "fadeOverTime", overtime);
     return hud;
 }
 
@@ -740,7 +740,7 @@ hud_fadeOverTime(hud, overtime) {
  */
 hud_setPulseFX(hud, speed, decaystart, decayduration) {
     hud.element SetPulseFX(speed, decaystart, decayduration);
-    hud.metadata = object_add(hud.metadata, "setPulseFX", _build_array(speed, decaystart, decayduration));
+    hud.properties = object_add(hud.properties, "setPulseFX", _build_array(speed, decaystart, decayduration));
     return hud;
 }
 
